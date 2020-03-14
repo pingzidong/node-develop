@@ -66,6 +66,6 @@ app.use((err, req,res, next)=>{
     }
 }) 
 
-app.listen(3000,()=> {
+app.listen(9999,()=> {
     console.log('服务启动成功');
 })
