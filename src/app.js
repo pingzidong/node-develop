@@ -11,13 +11,20 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.get('/list/:status/:page',async (req,res,next) => {
+app.get('/api/list/:status/:page',async (req,res,next) => {
+    let { status } = req.params
+    let list = await models.Todo.findAndCountAll({
+        where:{
+            status
+        }
+    })
     res.json({
-        list: []
+        list,
+        message: '查询成功'
     })
 })
 
-app.post('/create',async (req,res,next)=>{
+app.post('/api/create',async (req,res,next)=>{
     try {
         let { name, deadline, content } = req.body;
         let todo = await models.Todo.create({
@@ -34,7 +41,7 @@ app.post('/create',async (req,res,next)=>{
     }
 })
 
-app.post('/update',async (req,res,next)=>{
+app.post('/api/update',async (req,res,next)=>{
     try {
         let { name,deadline,content,id} = req.body 
         let todo = await models.Todo.findOne({
