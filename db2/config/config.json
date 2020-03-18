@@ -5,7 +5,7 @@
     "database": "node-develop",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "timezone":"+08:00"
+    "operatorsAliases": false
   },
   "test": {
     "username": "root",
